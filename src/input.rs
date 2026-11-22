@@ -9,10 +9,16 @@ pub struct Args {
     /// Path to the file to process
     pub filepath: PathBuf,
 }
+
 pub fn take_input() -> Result<Args, String> {
     let args = Args::parse();
+    // Check if the filepath is empty
     if args.filepath.is_empty() {
         return Err("Empty file path".to_string());
+    }
+    // Check if the filepath exist
+    if !args.filepath.is_file() {
+        return Err("File not found".to_string());
     }
     let extension = args.filepath.extension().and_then(|ext| ext.to_str());
     match extension {
