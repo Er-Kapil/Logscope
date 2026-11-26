@@ -37,6 +37,7 @@ impl fmt::Display for LogLevels {
         }
     }
 }
+
 struct Line<'a> {
     date_time: &'a str,
     level: LogLevels,
